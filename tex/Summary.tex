@@ -1,0 +1,121 @@
+
+
+\documentclass{homeworg}
+\usepackage{csvsimple}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12} 
+\usepackage{xfrac}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage[makeroom]{cancel}
+%\usepackage[hidelinks]{hyperref} 
+%\usepackage[hidelinks]{hyperref} 
+\hypersetup{
+	colorlinks=false,
+	pdfborder={0 0 0},
+} 
+
+\title{ Continuous Measurement of
+	Bloch Oscillations}
+%\author{ Instructor: Dr. Prasanna Venkatesh B \\ Submitted by: Meenu S. A. (20510098)}
+
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+	
+	
+	
+	
+	
+	
+	
+\section{Continuous Quantum Measurement}
+\subsection{Stochastic Schrodinger Equation}
+Measurement Operator $A(\alpha) = \left(\frac{4k\Delta t}{\pi}\right)\int_{-\infty}^{+\infty} exp (-2k\Delta t (x-\alpha)^2) \ket  x \bra x dx$
+We write $\alpha$ as the stochastic quantity:
+\begin{equation}
+\alpha_s = <x> + \frac{\Delta W}{\sqrt{8 k} \Delta t}
+\end{equation}
+\begin{align}
+\ket{\psi (t + \Delta t)} &\propto A(\alpha)\ket{\psi (t)}\\
+&\propto exp (-2k\Delta t (X-\alpha)^2)\ket{\psi (t)}\\
+&\propto exp (-2k\Delta t (\alpha^2 + X^2 - 2 \alpha X)\ket{\psi (t)}\\
+&\propto exp (-2k\Delta t \alpha^2 - 2k\Delta t X^2 + 4K\Delta t \alpha X)\ket{\psi (t)}
+\end{align}
+Using equation [1.1],
+\begin{align}
+\ket{\psi (t + \Delta t)} &\propto exp(-2k\Delta t X^2 + X[4k\Delta t <X> +\sqrt{2k }\Delta W])\ket{\psi (t)}
+\end{align}
+using the result, 
+\begin{align}
+exp (x)&= 1+x+\frac{x^2}{2!}+...
+\end{align}
+\begin{align}
+\ket{\psi (t + \Delta t)} &\propto (1-2k\Delta t X^2 + X[4k\Delta t <X> +\sqrt{2k}\Delta W]+kX^2\Delta W^2)\ket{\psi (t)}
+\end{align}
+when $\Delta W^2 \to dt$ and $\Delta t \to dt $
+\begin{equation}
+\ket{\psi (t + \Delta t)} \propto ({1-[kX^2 - 4kX<X>]dt +\sqrt{2k}XdW})\ket{\psi (t)}
+\end{equation}
+Now let's Normalize this equation: 
+\begin{equation}
+\bra{\psi (t + \Delta t)}\ket{\psi (t + \Delta t)} = 1
+\end{equation}
+\textbf{Normalization:}
+\begin{align}
+\ket{\psi (t + \Delta t)} &= A ({1-[kX^2 - 4kX<X>]dt +\sqrt{2k}XdW})\ket{\psi (t)}
+\end{align}
+\begin{equation}
+A^2 \bra{\psi(t)}({1-[kX^2 - 4kX<X>]dt +\sqrt{2k}XdW})({1-[kX^2 - 4kX<X>]dt +\sqrt{2k}XdW})\ket{\psi (t)} = 1 
+\end{equation}
+\begin{equation}
+A^2 (1+8k<X>^2dt+2\sqrt{2k}<X>dW)=1 
+\end{equation}
+\begin{equation}
+A = \sqrt{(1+8k<X>^2dt+2\sqrt{2k}<X>dW)}
+\end{equation}
+using the result, $(1+x)^\frac{-1}{2} = 1 - \frac{x}{2} +\frac{3}{8} x^2 + ...$
+\begin{eqnarray}
+A = 1 - k<X>^2 dt -\sqrt{2k}<X>dW
+\end{eqnarray}
+\begin{align}
+\therefore \ket{\psi (t + \Delta t)} &= (1 - k<X>^2 dt -\sqrt{2k}<X>dW) ({1-[kX^2 - 4kX<X>]dt +\sqrt{2k}XdW})\ket{\psi (t)}\\
+&=1 - k(X^2+<X>^2-2X<X>)dt+\sqrt{2k}(X-<X>)dW \ket{\psi (t)}\\
+&=1 - k(X-<X>)^2 dt +\sqrt{2k}(X-<X>)dW \ket{\psi (t)}\\
+&=\ket{\psi (t)} + (- k(X-<X>)^2 dt +\sqrt{2k}(X-<X>)dW) \ket{\psi (t)}\\
+\text{i.e.,} \ket{\psi (t + \Delta t)} &= \ket{\psi (t)} + d\ket{\psi}\\
+\therefore d\ket{\psi} &= - k(X-<X>)^2 dt +\sqrt{2k}(X-<X>)dW \ket{\psi (t)}
+\end{align}
+ [1.21] is called the Stochastic Schrodinger equation
+ \subsection{Stochastic Master Equation}
+ \begin{align}
+ \rho (t+dt) &= \ket{\psi (t + \Delta t)}\bra{\psi (t + \Delta t)}\\
+ \ket{\psi (t + \Delta t)}&=\ket{\psi (t)} + (- k(X-<X>)^2 dt +\sqrt{2k}(X-<X>)dW) \ket{\psi (t)}\\
+ \therefore \rho (t+dt)&= \rho(t) -k(X^2\rho -X\rho X +\rho X^2 -X\rho X)dt + \sqrt{2k}(X\rho + \rho X -2<X>\rho)dW\\
+ &=\rho(t) - k [X,[X, \rho]]dt + \sqrt{2k}(X\rho+\rho X -2<X>\rho)dW\\
+ \therefore d\rho &= - k [X,[X, \rho]]dt + \sqrt{2k}(X\rho+\rho X -2<X>\rho)dW
+ \end{align}
+ \subsection{Unconditioned Master Equation}
+ \begin{align}
+ \frac{d\rho}{d t}&=-k[X,[X, \rho]]
+ \end{align}
+ 
+
+\section{Dynamics of Bloch Oscillations}
+
+
+
+
+
+
+
+
+	
+\end{document}
